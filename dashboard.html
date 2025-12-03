@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT Vibes - Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body class="bg-gray-900 text-white min-h-screen pb-20">
+
+  <!-- Banner -->
+  <div class="w-full h-[250px]">
+    <img src="energy.jpg" class="w-full h-full object-cover rounded-b-3xl shadow-xl">
+  </div>
+
+  <!-- Welcome Section -->
+  <div class="px-5 mt-6">
+    <h1 class="text-3xl font-bold">Welcome, Student 👋</h1>
+    <p class="text-gray-300 mt-1">Choose your Faculty to begin learning.</p>
+  </div>
+
+  <!-- Faculty Grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-5 mt-8">
+
+    <!-- Construction Technology -->
+    <a href="construction.html"
+       class="bg-gradient-to-br from-blue-900 via-purple-800 to-blue-700
+              p-5 rounded-2xl shadow-lg hover:scale-105 transition transform duration-300">
+      <img src="construction.jpg" class="w-full h-40 object-cover rounded-xl mb-4">
+      <h3 class="text-xl font-bold">Construction Technology</h3>
+      <p class="text-gray-200 text-sm mt-1">Civil Design, AutoCAD, Architecture & More.</p>
+    </a>
+
+    <!-- IT & Software -->
+    <a href="software.html"
+       class="bg-gradient-to-br from-blue-900 via-purple-800 to-blue-700
+              p-5 rounded-2xl shadow-lg hover:scale-105 transition transform duration-300">
+      <img src="soft.jpg" class="w-full h-40 object-cover rounded-xl mb-4">
+      <h3 class="text-xl font-bold">IT & Software</h3>
+      <p class="text-gray-200 text-sm mt-1">Frontend, Backend, Full Stack & App Dev.</p>
+    </a>
+
+    <!-- Catering & Hospitality -->
+    <a href="faculty-catering.html"
+       class="bg-gradient-to-br from-blue-900 via-purple-800 to-blue-700
+              p-5 rounded-2xl shadow-lg hover:scale-105 transition transform duration-300">
+      <img src="cook.jpg" class="w-full h-40 object-cover rounded-xl mb-4">
+      <h3 class="text-xl font-bold">Catering & Hospitality</h3>
+      <p class="text-gray-200 text-sm mt-1">Food Management, Hygiene & Hospitality.</p>
+    </a>
+
+  </div>
+
+  <!-- Bottom Navigation -->
+  <div class="fixed bottom-0 left-0 right-0 bg-gray-800 border-t border-gray-700 py-3 flex justify-around">
+
+    <a href="dashboard.html" class="text-center">
+      <i class="fa-solid fa-book text-blue-300 text-2xl"></i>
+      <p class="text-xs mt-1 text-gray-300">Courses</p>
+    </a>
+
+    <a href="videos.html" class="text-center">
+      <i class="fa-brands fa-youtube text-red-400 text-2xl"></i>
+      <p class="text-xs mt-1 text-gray-300">Videos</p>
+    </a>
+
+    <a href="exams.html" class="text-center">
+      <i class="fa-solid fa-file-pen text-purple-300 text-2xl"></i>
+      <p class="text-xs mt-1 text-gray-300">Exams</p>
+    </a>
+
+    <a href="certificates.html" class="text-center">
+      <i class="fa-solid fa-award text-yellow-300 text-2xl"></i>
+      <p class="text-xs mt-1 text-gray-300">Cert</p>
+
+</body>
+</html>

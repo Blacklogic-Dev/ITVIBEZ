@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT Vibes Registration</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    .card-container { perspective: 1000px; }
+    .card { transition: transform 0.8s; transform-style: preserve-3d; }
+    .card.flipped { transform: rotateY(180deg); }
+    .card-face { position: absolute; width: 100%; backface-visibility: hidden; }
+    .card-back { transform: rotateY(180deg); }
+  </style>
+</head>
+
+<body class="bg-gray-900 flex items-center justify-center min-h-screen">
+
+  <div class="card-container w-full max-w-md">
+    <div id="card" class="card relative">
+
+      <!-- REGISTRATION PAGE -->
+      <div class="card-face bg-gray-800 rounded-xl shadow-2xl p-6 space-y-4">
+        
+        <div class="flex justify-center">
+          <img src="vibeit.jpg" class="w-20 h-20 rounded-xl shadow-xl">
+        </div>
+
+        <h2 class="text-3xl font-bold text-center text-blue-400">Student Registration</h2>
+        <p class="text-center text-gray-300 text-sm">Join IT Vibes Academy — Learn Skills for Real Jobs</p>
+
+
+
+        <hr class="border-gray-700">
+
+        <input id="name" type="text" placeholder="First Name" class="w-full p-2 bg-gray-700 text-white border border-gray-600 rounded">
+        <input id="surname" type="text" placeholder="Surname" class="w-full p-2 bg-gray-700 text-white border border-gray-600 rounded">
+        <input id="idnum" type="text" placeholder="ID Number" class="w-full p-2 bg-gray-700 text-white border border-gray-600 rounded">
+        <input id="dob" type="date" class="w-full p-2 bg-gray-700 text-white border border-gray-600 rounded">
+        <input id="email" type="email" placeholder="Email Address" class="w-full p-2 bg-gray-700 text-white border border-gray-600 rounded">
+
+        <!-- FACULTY DROPDOWN -->
+        <select id="faculty" class="w-full p-2 bg-gray-700 text-white border border-gray-600 rounded">
+          <option selected disabled>Select Faculty</option>
+          <option>Construction Technology</option>
+          <option>IT & Software</option>
+          <option>Catering & Hospitality</option>
+        </select>
+
+        <button onclick="registerStudent()" class="w-full bg-blue-700 text-white py-2 rounded hover:bg-blue-600">Register</button>
+
+        <p class="text-center text-gray-400 mt-3">Already registered?</p>
+        <button onclick="goToLogin()" class="w-full bg-gray-600 text-white py-2 rounded hover:bg-gray-500">
+          Login
+        </button>
+      </div>
+
+      <!-- RECEIPT PAGE -->
+      <div id="receipt" class="card-face bg-gray-800 rounded-xl shadow-2xl p-6 space-y-4 hidden">
+        
+        <div class="flex justify-center">
+          <img src="IT.png" class="w-16 h-16 rounded-lg shadow-lg">
+        </div>
+
+        <h2 class="text-xl font-bold text-blue-400">Registration Successful 🎉</h2>
+
+        <p id="receiptName" class="text-gray-200"></p>
+        <p id="receiptStudentNum" class="text-purple-300 font-bold"></p>
+        <p class="text-green-500">Share this receipt with your agent to confirm registration.</p>
+
+        <button onclick="shareToWhatsApp()" class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-500">
+          Share to Agent
+        </button>
+
+        <button onclick="goToLogin()" class="w-full bg-blue-700 text-white py-2 rounded hover:bg-blue-600">
+          Continue to Login
+        </button>
+      </div>
+
+      <!-- LOGIN PAGE -->
+      <div class="card-face card-back bg-gray-800 rounded-xl shadow-2xl p-6 space-y-4">
+        
+        <div class="flex justify-center">
+          <img src="IT.png" class="w-20 h-20 rounded-xl shadow-xl">
+        </div>
+
+        <h2 class="text-3xl font-bold text-center text-blue-400">Student Login</h2>
+
+        <input id="loginStudentNum" type="text" placeholder="Student Number" class="w-full p-2 bg-gray-700 text-white border border-gray-600 rounded">
+        <input id="loginPassword" type="password" placeholder="Password" class="w-full p-2 bg-gray-700 text-white border border-gray-600 rounded">
+
+        <button onclick="login()" class="w-full bg-blue-700 text-white py-2 rounded hover:bg-blue-600">Login</button>
+
+        <button onclick="goToRegister()" class="w-full bg-gray-600 text-white py-2 rounded hover:bg-gray-500 mt-2">
+          Back to Register
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    let generatedStudentNum = "";
+    let generatedPassword = "";
+
+    function registerStudent() {
+      const name = document.getElementById('name').value;
+      const surname = document.getElementById('surname').value;
+
+      generatedStudentNum = "25" + Math.floor(100000 + Math.random() * 900000);
+      generatedPassword = Math.random().toString(36).slice(-8);
+
+      document.getElementById('receiptName').innerText = `Name: ${name} ${surname}`;
+      document.getElementById('receiptStudentNum').innerText = `Student Number: ${generatedStudentNum}`;
+
+      document.querySelector('.card-face').classList.add("hidden");
+      document.getElementById('receipt').classList.remove("hidden");
+    }
+
+    function shareToWhatsApp() {
+      const msg = `IT Vibes Registration:%0AStudent Number: ${generatedStudentNum}`;
+      window.open(`https://wa.me/27606614909?text=${msg}`, '_blank');
+    }
+
+    function goToLogin() {
+      document.getElementById('card').classList.add('flipped');
+      document.getElementById('loginStudentNum').value = generatedStudentNum;
+      document.getElementById('loginPassword').value = generatedPassword;
+    }
+
+    function goToRegister() {
+      document.getElementById('card').classList.remove('flipped');
+    }
+
+    function login() {
+      window.location.href = "dashboard.html";
+    }
+  </script>
+
+</body>
+</html>

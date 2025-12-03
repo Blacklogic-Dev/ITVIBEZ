@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IT Vibes - Courses</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="bg-gray-900 text-white font-sans">
+
+<!-- Top Banner Carousel (3 images display) -->
+<div class="max-w-6xl mx-auto mt-6 relative">
+  <div class="relative w-full h-60 overflow-hidden rounded-2xl shadow-lg">
+    <img src="construction.jpg" class="absolute w-full h-full object-cover transition-opacity duration-1000" id="slide1">
+    <img src="soft.jpg" class="absolute w-full h-full object-cover transition-opacity duration-1000 opacity-0" id="slide2">
+    <img src="cook.jpg" class="absolute w-full h-full object-cover transition-opacity duration-1000 opacity-0" id="slide3">
+  </div>
+</div>
+
+<script>
+// Simple fade carousel for 3 images
+let slides = [document.getElementById('slide1'), document.getElementById('slide2'), document.getElementById('slide3')];
+let current = 0;
+setInterval(() => {
+  slides[current].classList.add('opacity-0');
+  current = (current + 1) % slides.length;
+  slides[current].classList.remove('opacity-0');
+}, 3000);
+</script>
+
+<!-- Faculty Sections -->
+<div class="max-w-6xl mx-auto px-5 mt-12 space-y-12">
+
+  <!-- Construction Technology -->
+  <section>
+    <h2 class="text-3xl font-bold text-yellow-300 mb-6">Construction Technology</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="bg-gradient-to-br from-blue-900 via-purple-800 to-blue-700 p-5 rounded-2xl shadow-lg">
+        <h3 class="text-xl font-bold mb-2">Civil Design</h3>
+        <p class="text-gray-200 mb-3">Overview: Learn the fundamentals of civil design including plans, structures, and regulations.</p>
+        <a href="https://www.exds.com.au/wp-content/uploads/2014/05/12d-2C1_Basic_Civil_Design_Part_1.pdf" class="bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-300 transition">Download PDF</a>
+      </div>
+      <div class="bg-gradient-to-br from-blue-900 via-purple-800 to-blue-700 p-5 rounded-2xl shadow-lg">
+        <h3 class="text-xl font-bold mb-2">Project Management</h3>
+        <p class="text-gray-200 mb-3">Overview: Master construction project planning, execution, and team management.</p>
+        <a href="https://institutebm.org.za/wp-content/uploads/2021/09/Project-Management-Module-1.pdf" class="bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-300 transition">Download PDF</a>
+      </div>
+      <div class="bg-gradient-to-br from-blue-900 via-purple-800 to-blue-700 p-5 rounded-2xl shadow-lg">
+        <h3 class="text-xl font-bold mb-2">AutoCAD</h3>
+        <p class="text-gray-200 mb-3">Overview: Learn to create precise engineering drawings with AutoCAD software.</p>
+        <a href="https://static.sdcpublications.com/pdfsample/978-1-63057-585-4-1-runqgq1tpf.pdf" class="bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-300 transition">Download PDF</a>
+      </div>
+      <div class="bg-gradient-to-br from-blue-900 via-purple-800 to-blue-700 p-5 rounded-2xl shadow-lg">
+        <h3 class="text-xl font-bold mb-2">Architectural Tech</h3>
+        <p class="text-gray-200 mb-3">Overview: Understand architectural design principles and construction methods.</p>
+        <a href="http://ndl.ethernet.edu.et/bitstream/123456789/20019/1/4.pdf" class="bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-300 transition">Download PDF</a>
+      </div>
+      <div class="bg-gradient-to-br from-blue-900 via-purple-800 to-blue-700 p-5 rounded-2xl shadow-lg">
+        <h3 class="text-xl font-bold mb-2">Safety & Admin</h3>
+        <p class="text-gray-200 mb-3">Overview: Learn safety protocols, site management, and administrative skills.</p>
+        <a href="https://www.transport.gov.za/wp-content/uploads/2023/02/1.2.-CHAPTER-2-SAFETY-ADMINISTRATION-Version-2.0.pdf" class="bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-300 transition">Download PDF</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- IT & Software -->
+  <section>
+    <h2 class="text-3xl font-bold text-yellow-300 mb-6">IT & Software</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="bg-gradient-to-br from-blue-900 via-purple-800 to-blue-700 p-5 rounded-2xl shadow-lg">
+        <h3 class="text-xl font-bold mb-2">Frontend Development</h3>
+        <p class="text-gray-200 mb-3">Overview: Learn HTML, CSS, JavaScript, and modern frontend frameworks.</p>
+        <a href="https://pdfs.semanticscholar.org/f689/e06626e049f09f6e92aa885f9f9f39ba0378.pdf" class="bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-300 transition">Download PDF</a>
+      </div>
+      <div class="bg-gradient-to-br from-blue-900 via-purple-800 to-blue-700 p-5 rounded-2xl shadow-lg">
+        <h3 class="text-xl font-bold mb-2">Backend Development</h3>
+        <p class="text-gray-200 mb-3">Overview: Master server-side programming, databases, and APIs.</p>
+        <a href="https://cdn.codewithmosh.com/image/upload/v1721773293/guides/backend-roadmap-v2.pdf" class="bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-300 transition">Download PDF</a>
+      </div>
+      <div class="bg-gradient-to-br from-blue-900 via-purple-800 to-blue-700 p-5 rounded-2xl shadow-lg">
+        <h3 class="text-xl font-bold mb-2">Full Stack</h3>
+        <p class="text-gray-200 mb-3">Overview: Become a complete web developer handling both frontend and backend.</p>
+        <a href="https://ucbxwebsite.z13.web.core.windows.net/docs/FullStackWebDev_CourseReader_FirstChapter.pdf" class="bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-300 transition">Download PDF</a>
+      </div>
+      <div class="bg-gradient-to-br from-blue-900 via-purple-800 to-blue-700 p-5 rounded-2xl shadow-lg">
+        <h3 class="text-xl font-bold mb-2">Web Development</h3>
+        <p class="text-gray-200 mb-3">Overview: Build responsive websites and web applications from scratch.</p>
+        <a href="https://cdn.codewithmosh.com/image/upload/v1721763853/guides/web-roadmap.pdf" class="bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-300 transition">Download PDF</a>
+      </div>
+      <div class="bg-gradient-to-br from-blue-900 via-purple-800 to-blue-700 p-5 rounded-2xl shadow-lg">
+        <h3 class="text-xl font-bold mb-2">App Development</h3>
+        <p class="text-gray-200 mb-3">Overview: Learn to develop mobile applications for Android and iOS.</p>
+        <a href="https://cdn.codewithmosh.com/image/upload/v1721773293/guides/mobile-roadmap-v2.pdf" class="bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-300 transition">Download PDF</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Catering & Hospitality -->
+  <section>
+    <h2 class="text-3xl font-bold text-yellow-300 mb-6">Catering & Hospitality</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="bg-gradient-to-br from-blue-900 via-purple-800 to-blue-700 p-5 rounded-2xl shadow-lg">
+        <h3 class="text-xl font-bold mb-2">Food Management</h3>
+        <p class="text-gray-200 mb-3">Overview: Learn planning, preparation, and management of food services.</p>
+        <a href="http://ndl.ethernet.edu.et/bitstream/123456789/36101/1/173.Payne%20Palacio.pdf" class="bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-300 transition">Download PDF</a>
+      </div>
+      <div class="bg-gradient-to-br from-blue-900 via-purple-800 to-blue-700 p-5 rounded-2xl shadow-lg">
+        <h3 class="text-xl font-bold mb-2">Hygiene</h3>
+        <p class="text-gray-200 mb-3">Overview: Master hygiene and safety standards in kitchens and hospitality.</p>
+        <a href="https://cdn.who.int/media/docs/default-source/infographics-pdf/children-and-environment/infogr-he4-sanitation-hygiene-20082019-od-web-pages-2.pdf?sfvrsn=b5ff26cc_2" class="bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-300 transition">Download PDF</a>
+      </div>
+      <div class="bg-gradient-to-br from-blue-900 via-purple-800 to-blue-700 p-5 rounded-2xl shadow-lg">
+        <h3 class="text-xl font-bold mb-2">Principles of Chef</h3>
+        <p class="text-gray-200 mb-3">Overview: Learn professional cooking techniques and kitchen practices.</p>
+        <a href="https://oklahoma.gov/content/dam/ok/en/careertech/educators/resource-center/resources-by-career-cluster/hospitality-and-tourism/basic-cooking-principles.pdf" class="bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-300 transition">Download PDF</a>
+      </div>
+      <div class="bg-gradient-to-br from-blue-900 via-purple-800 to-blue-700 p-5 rounded-2xl shadow-lg">
+        <h3 class="text-xl font-bold mb-2">Hospitality</h3>
+        <p class="text-gray-200 mb-3">Overview: Understand guest services, customer satisfaction, and hotel management.</p>
+        <a href="https://www.gov.za/sites/default/files/gcis_document/201409/28526rg8404gon152.pdf" class="bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-300 transition">Download PDF</a>
+      </div>
+      <div class="bg-gradient-to-br from-blue-900 via-purple-800 to-blue-700 p-5 rounded-2xl shadow-lg">
+        <h3 class="text-xl font-bold mb-2">Consumer Studies</h3>
+        <p class="text-gray-200 mb-3">Overview: Learn about consumer behavior, preferences, and service standards.</p>
+        <a href="https://www.education.gov.za/Portals/0/Documents/Manuals/Occupational%20Subjects/CONSUMER%20STUDIES%20KOPANONG/2022%20CONS%20THEORY%20GUIDES%20-%20ALL%20OPTIONS/Year%201/2022%20CONS%20Year%201%20Theory%20-%20LG.pdf?ver=2023-02-15-150328-000" class="bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-300 transition">Download PDF</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+</body>
+</html>

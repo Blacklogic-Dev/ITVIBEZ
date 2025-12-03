@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IT VIBES Exam</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  body { background: #1e293b; color: white; }
+  .hidden { display: none; }
+</style>
+</head>
+<body class="min-h-screen flex flex-col items-center p-5">
+
+  <h1 class="text-3xl font-bold mb-6">IT VIBES Exam</h1>
+
+  <!-- Faculty Selection -->
+  <div id="facultySelection" class="space-y-4">
+    <h2 class="text-xl font-semibold">Select Faculty to Begin Exam</h2>
+    <div class="flex gap-4">
+      <button class="bg-blue-800 px-4 py-2 rounded" onclick="startExam('construction')">Construction Technology</button>
+      <button class="bg-purple-800 px-4 py-2 rounded" onclick="startExam('software')">IT & Software</button>
+      <button class="bg-indigo-800 px-4 py-2 rounded" onclick="startExam('catering')">Catering & Hospitality</button>
+    </div>
+  </div>
+
+  <!-- Exam Container -->
+  <div id="examContainer" class="hidden w-full max-w-2xl mt-6 bg-gray-800 p-6 rounded-xl shadow-lg">
+    <div class="mb-4">
+      <h2 id="examFaculty" class="text-2xl font-bold"></h2>
+      <div class="w-full bg-gray-600 h-4 rounded-full mt-2">
+        <div id="progressBar" class="bg-green-500 h-4 rounded-full w-0"></div>
+      </div>
+      <p class="mt-1 text-sm" id="progressText">0 / 15 Questions</p>
+    </div>
+
+    <div id="questionContainer" class="space-y-4"></div>
+
+    <button id="nextBtn" class="bg-blue-600 px-4 py-2 rounded mt-4 hover:bg-blue-500" onclick="nextQuestion()">Next</button>
+  </div>
+
+  <!-- Result -->
+  <div id="resultContainer" class="hidden text-center mt-6 space-y-4">
+    <h2 class="text-2xl font-bold" id="resultTitle"></h2>
+    <p id="resultText"></p>
+    <button class="bg-green-600 px-4 py-2 rounded hover:bg-green-500" onclick="location.reload()"></button>
+  </div>
+
+  <!-- Bottom Navigation -->
+  <div class="fixed bottom-0 left-0 right-0 bg-gray-800 border-t border-gray-700 py-3 flex justify-around">
+
+    <a href="dashboard.html" class="text-center">
+      <i class="fa-solid fa-book text-blue-300 text-2xl"></i>
+      <p class="text-xs mt-1 text-gray-300">Courses</p>
+    </a>
+
+    <a href="videos.html" class="text-center">
+      <i class="fa-brands fa-youtube text-red-400 text-2xl"></i>
+      <p class="text-xs mt-1 text-gray-300">Videos</p>
+    </a>
+
+    <a href="exams.html" class="text-center">
+      <i class="fa-solid fa-file-pen text-purple-300 text-2xl"></i>
+      <p class="text-xs mt-1 text-gray-300">Exams</p>
+    </a>
+
+    <a href="cert.html" class="text-center">
+      <i class="fa-solid fa-award text-yellow-300 text-2xl"></i>
+      <p class="text-xs mt-1 text-gray-300">Cert</p>
+    </a>
+
+  </div>
+
+<script>
+/* ===================== Questions ===================== */
+// Example structure for all faculties
+const questions = {
+  construction: [
+    {question:"You are on site and see workers not wearing helmets. You:", type:"mcq", options:["Ignore it","Report to safety officer","Ask them politely","Leave site"], answer:"Report to safety officer"},
+    {question:"The blueprint has a foundation error. You:", type:"mcq", options:["Continue construction","Notify architect","Redesign yourself","Wait for contractor"], answer:"Notify architect"},
+    {question:"Subcontractor is behind schedule. You:", type:"mcq", options:["Penalize them","Communicate and reschedule","Ignore","Fire them"], answer:"Communicate and reschedule"},
+    {question:"Materials delivered are damaged. You:", type:"mcq", options:["Use them anyway","Report and replace","Hide the damage","Ask workers to fix"], answer:"Report and replace"},
+    {question:"Client requests design change mid-project. You:", type:"mcq", options:["Refuse","Evaluate cost and timeline","Implement immediately","Ignore request"], answer:"Evaluate cost and timeline"},
+    {question:"Weather delays construction. You:", type:"mcq", options:["Push workers anyway","Reschedule work","Stop project permanently","Work secretly"], answer:"Reschedule work"},
+    {question:"Safety inspection fails. You:", type:"mcq", options:["Fix issues before proceeding","Ignore inspector","Hide problems","Argue"], answer:"Fix issues before proceeding"},
+    {question:"Concrete mix is incorrect. You:", type:"mcq", options:["Pour anyway","Stop and correct","Ask laborers to adjust","Wait"], answer:"Stop and correct"},
+    {question:"Workers report fatigue. You:", type:"mcq", options:["Force them to continue","Rotate shifts","Ignore","Penalize"], answer:"Rotate shifts"},
+    {question:"Budget exceeds limits. You:", type:"mcq", options:["Continue overspending","Adjust plan","Cut quality","Hide expenses"], answer:"Adjust plan"},
+    {question:"Using PPE on site is optional.", type:"tf", answer:false},
+    {question:"Safety protocols must be followed.", type:"tf", answer:true},
+    {question:"Minor foundation cracks can be ignored.", type:"tf", answer:false},
+    {question:"Change orders must always be documented.", type:"tf", answer:true},
+    {question:"Site inspections should be conducted regularly.", type:"tf", answer:true},
+  ],
+  software: [
+    {question:"A client requests a tight deadline feature. You:", type:"mcq", options:["Promise immediately","Estimate realistically","Delay","Ignore"], answer:"Estimate realistically"},
+    {question:"Server crashes in production. You:", type:"mcq", options:["Restart blindly","Check logs and fix","Ignore","Call client"], answer:"Check logs and fix"},
+    {question:"Code review finds major bug. You:", type:"mcq", options:["Push to production","Fix immediately","Assign to intern","Ignore"], answer:"Fix immediately"},
+    {question:"New library is released. You:", type:"mcq", options:["Integrate without testing","Evaluate compatibility","Ignore","Delete old code"], answer:"Evaluate compatibility"},
+    {question:"Deployment fails. You:", type:"mcq", options:["Debug and retry","Rollback silently","Blame team","Ignore"], answer:"Debug and retry"},
+    {question:"Security breach detected. You:", type:"mcq", options:["Notify clients","Hide incident","Fix silently","Do nothing"], answer:"Notify clients"},
+    {question:"Code is not documented. You:", type:"mcq", options:["Ignore","Add documentation","Delete code","Ask client"], answer:"Add documentation"},
+    {question:"Tests fail before release. You:", type:"mcq", options:["Release anyway","Fix tests","Skip testing","Delay indefinitely"], answer:"Fix tests"},
+    {question:"Version control is not used. You:", type:"mcq", options:["Push code anyway","Initialize repo","Ask someone else","Ignore"], answer:"Initialize repo"},
+    {question:"Team members disagree on architecture. You:", type:"mcq", options:["Decide after discussion","Ignore","Choose randomly","Stop project"], answer:"Decide after discussion"},
+    {question:"Unit tests are optional.", type:"tf", answer:false},
+    {question:"Security practices must be followed.", type:"tf", answer:true},
+    {question:"Documentation can be skipped.", type:"tf", answer:false},
+    {question:"Backups are necessary.", type:"tf", answer:true},
+    {question:"Agile methodology improves efficiency.", type:"tf", answer:true},
+  ],
+  catering: [
+    {question:"Customer reports allergic reaction. You:", type:"mcq", options:["Ignore","Investigate immediately","Blame customer","Serve same dish"], answer:"Investigate immediately"},
+    {question:"Kitchen hygiene is poor. You:", type:"mcq", options:["Clean immediately","Ignore","Ask staff to handle","Continue service"], answer:"Clean immediately"},
+    {question:"Inventory running low. You:", type:"mcq", options:["Order correctly","Ignore","Take personal items","Use expired stock"], answer:"Order correctly"},
+    {question:"Food spoiled during delivery. You:", type:"mcq", options:["Deliver anyway","Replace and notify client","Hide issue","Delay without notice"], answer:"Replace and notify client"},
+    {question:"Recipe not followed. You:", type:"mcq", options:["Adjust according to taste","Follow recipe","Guess ingredients","Ask staff"], answer:"Follow recipe"},
+    {question:"Chef absent for service. You:", type:"mcq", options:["Cancel service","Assign qualified staff","Ignore","Work alone"], answer:"Assign qualified staff"},
+    {question:"Customer feedback negative. You:", type:"mcq", options:["Ignore","Address politely","Argue","Remove review"], answer:"Address politely"},
+    {question:"Expired ingredients found. You:", type:"mcq", options:["Use anyway","Discard","Hide","Cook partially"], answer:"Discard"},
+    {question:"Food temperature logs missing. You:", type:"mcq", options:["Record immediately","Ignore","Ask staff later","Skip"], answer:"Record immediately"},
+    {question:"Staff not following protocols. You:", type:"mcq", options:["Train and supervise","Ignore","Punish unfairly","Fire"], answer:"Train and supervise"},
+    {question:"Hand washing is optional.", type:"tf", answer:false},
+    {question:"Food storage temp is critical.", type:"tf", answer:true},
+    {question:"Waste management is not important.", type:"tf", answer:false},
+    {question:"Kitchen sanitization is daily.", type:"tf", answer:true},
+    {question:"Customer feedback should be reviewed.", type:"tf", answer:true},
+  ]
+};
+
+/* ===================== Exam Logic ===================== */
+let currentFaculty = "";
+let currentQ = 0;
+let score = 0;
+
+function startExam(faculty) {
+  currentFaculty = faculty;
+  currentQ = 0;
+  score = 0;
+  document.getElementById('facultySelection').classList.add('hidden');
+  document.getElementById('examContainer').classList.remove('hidden');
+  document.getElementById('examFaculty').innerText = `Faculty: ${capitalize(faculty)}`;
+  showQuestion();
+}
+
+function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+function showQuestion() {
+  const q = questions[currentFaculty][currentQ];
+  const container = document.getElementById('questionContainer');
+  container.innerHTML = "";
+
+  let html = `<p class="font-bold">${currentQ+1}. ${q.question}</p>`;
+  if(q.type === "mcq") {
+    q.options.forEach((opt, i) => {
+      html += `<div>
+        <input type="radio" name="answer" value="${opt}" id="opt${i}">
+        <label for="opt${i}" class="ml-2">${opt}</label>
+      </div>`;
+    });
+  } else if(q.type === "tf") {
+    html += `<div>
+      <input type="radio" name="answer" value="true" id="optTrue">
+      <label for="optTrue" class="ml-2">True</label>
+    </div>
+    <div>
+      <input type="radio" name="answer" value="false" id="optFalse">
+      <label for="optFalse" class="ml-2">False</label>
+    </div>`;
+  }
+
+  container.innerHTML = html;
+  updateProgress();
+}
+
+function updateProgress() {
+  const total = questions[currentFaculty].length;
+  const percent = Math.round((currentQ / total) * 100);
+  document.getElementById('progressBar').style.width = `${percent}%`;
+  document.getElementById('progressText').innerText = `${currentQ} / ${total} Questions`;
+}
+
+function nextQuestion() {
+  const q = questions[currentFaculty][currentQ];
+  const selected = document.querySelector('input[name="answer"]:checked');
+  if(!selected) { alert("Please select an answer"); return; }
+
+  let answer = selected.value;
+  if(q.type === "tf") answer = (answer === "true");
+  if(answer == q.answer) score++;
+
+  currentQ++;
+  if(currentQ >= questions[currentFaculty].length) {
+    showResult();
+  } else {
+    showQuestion();
+  }
+}
+
+function showResult() {
+  document.getElementById('examContainer').classList.add('hidden');
+  document.getElementById('resultContainer').classList.remove('hidden');
+
+  const total = questions[currentFaculty].length;
+  const percent = Math.round((score / total) * 100);
+  const resultTitle = document.getElementById('resultTitle');
+  const resultText = document.getElementById('resultText');
+
+  if(percent >= 60) {
+    resultTitle.innerText = "Congratulations! 🎓";
+    resultText.innerHTML = `You scored ${percent}%. You are qualified.<br>Certificates will be sent to your email.`;
+  } else {
+    resultTitle.innerText = "Not Qualified 😔";
+    resultText.innerHTML = `You scored ${percent}%.<br>Please review the courses and try again in 2 weeks.<br>
+    Advice: Prepare and stay disciplined.<br>📖 "For God gave us a spirit not of fear but of power and love and self-control." - 2 Timothy 1:7`;
+  }
+}
+</script>
+
+</body>
+</html>
